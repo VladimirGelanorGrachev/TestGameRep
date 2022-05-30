@@ -9,7 +9,7 @@ namespace Asteroid
         public GameObject _explosionPlayer;
         private GameObject _cloneExplosion;
         public int _scoreValue;
-        private GameController _gameController;
+        private GameController _gameController;        
         private void Start()
         {
             GameObject GameControllerObject = GameObject.FindWithTag("GameController");
@@ -20,7 +20,7 @@ namespace Asteroid
             if (GameControllerObject == null)
             {
                 Debug.Log("GameController not find");
-            }
+            }            
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -34,12 +34,14 @@ namespace Asteroid
 
             }
             if (other.tag == "Player")
-            {
-                _cloneExplosion = Instantiate(_explosionPlayer, GetComponent<Rigidbody>().position, GetComponent<Rigidbody>().rotation);
-                _gameController.GameOver();
-                Destroy(other.gameObject);
-                Destroy(gameObject);
-                Destroy(_cloneExplosion, 1f);
+            {         
+              
+                    _cloneExplosion = Instantiate(_explosionPlayer, GetComponent<Rigidbody>().position, GetComponent<Rigidbody>().rotation);
+                    _gameController.GameOver();
+                    Destroy(other.gameObject);
+                    Destroy(gameObject);
+                    Destroy(_cloneExplosion, 1f);
+                
             }
         }
     }
