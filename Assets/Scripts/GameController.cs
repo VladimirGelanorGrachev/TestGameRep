@@ -18,6 +18,8 @@ namespace Asteroid
         public Text _gameOverText;
         private bool _gameOver;
         public bool _restart;
+        float _currentHealth;
+        public Text _Health;
 
         void Start()
         {
@@ -27,8 +29,9 @@ namespace Asteroid
             _restartText.text = "";
             _gameOverText.text = "";
             _score = 0;
+            _currentHealth = 100;            
             UpdateScore();
-
+            UpdateHealth();
             StartCoroutine(SpawnWaves());
         }
         void Update()
@@ -78,6 +81,15 @@ namespace Asteroid
         {
             _gameOverText.text = "GameOver";
             _gameOver = true;
+        }
+        void UpdateHealth()
+        {
+            _Health.text = "Health: " + _currentHealth;
+        }
+        public void ChangeHealth(float newCurrentHealth)
+        {
+            _currentHealth -= newCurrentHealth;           
+            UpdateHealth();
         }
     }
 }
